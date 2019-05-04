@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" width="1200" height="620" role="img" aria-labelledby="ttitle tdesc" font-family="ui-monospace, 'SF Mono', 'Cascadia Code', Menlo, Consolas, monospace">
+  <title id="ttitle">portsmith trace flow: capture to replay</title>
+  <desc id="tdesc">A workshop schematic showing a raw session log normalized into base64 trace records, inferred into a schema, and replayed against a live target, rendered as an oscilloscope terminal.</desc>
+
+  <defs>
+    <linearGradient id="mid2" x1="0" y1="0" x2="0" y2="1">
