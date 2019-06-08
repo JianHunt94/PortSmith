@@ -8,3 +8,14 @@
 //	portcap stats     -in cap.trace
 //	portcap version
 package main
+
+import (
+	"flag"
+	"fmt"
+	"io"
+	"os"
+	"time"
+
+	"github.com/portsmith/portcap/internal/capture"
+	"github.com/portsmith/portcap/internal/normalize"
+	"github.com/portsmith/portcap/internal/trace"
