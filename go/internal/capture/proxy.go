@@ -4,3 +4,9 @@ package capture
 
 import (
 	"crypto/rand"
+	"encoding/hex"
+	"fmt"
+	"io"
+	"net"
+	"sync"
+	"time"
