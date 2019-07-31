@@ -24,3 +24,11 @@ func FromRawLog(r io.Reader, proto, session string, startNanos, stepNanos int64)
 	sc.Buffer(make([]byte, 0, 64*1024), 8*1024*1024)
 
 	var records []trace.Record
+	var cur *strings.Builder
+	var curDir trace.Direction
+	ts := startNanos
+
+	flush := func() {
+		if cur == nil {
+			return
+		}
