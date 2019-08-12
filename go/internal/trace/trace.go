@@ -5,3 +5,10 @@
 // ignored by decoders. Every other non-empty line is a record with the shape:
 //
 //	V1 <ts_unix_nanos> <dir> <session> <proto> <len> <base64-payload>
+//
+// where:
+//   - ts_unix_nanos : int64 nanoseconds since the Unix epoch
+//   - dir           : ">" for request (client->server) or "<" for response
+//   - session       : opaque session identifier (no spaces)
+//   - proto         : protocol hint ("tcp", "http", "redis", "raw", ...)
+//   - len           : decimal length in bytes of the decoded payload
