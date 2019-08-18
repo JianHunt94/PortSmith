@@ -12,3 +12,11 @@
 //   - session       : opaque session identifier (no spaces)
 //   - proto         : protocol hint ("tcp", "http", "redis", "raw", ...)
 //   - len           : decimal length in bytes of the decoded payload
+//   - payload        : standard base64 encoding of the raw payload bytes
+//
+// The format is intentionally simple so that both the Go capture tool and the
+// Rust replay tool can parse it with standard libraries only.
+package trace
+
+import (
+	"bufio"
