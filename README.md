@@ -23,3 +23,28 @@ You have a TCP service with no spec — an undocumented daemon, a vendor box tha
 speaks its own dialect, a Redis-flavoured thing you want to regression-test. You
 have a socket, not a document.
 
+**portsmith is the bench kit for that socket.** It treats an opaque protocol the
+way an electronics workshop treats an unknown signal: clip a probe onto the wire
+(`capture`), tidy the recording into a clean trace (`normalize`), read the
+waveform and chart its structure (`infer`), then drive the same stimulus back
+into a live device (`replay`). No protocol-specific code, no dependency tree —
+two small binaries, each in the language that suits its job, exchanging one
+documented text format.
+
+> **Not** a Wireshark, a fuzzer, or a full reverse-engineering suite. portsmith
+> is a focused, auditable toolchain for line-oriented request/response traffic
+> you can read end-to-end in an afternoon.
+
+---
+
+## Table of contents
+
+- [Why portsmith](#why-portsmith)
+- [The two instruments](#the-two-instruments)
+- [Install &amp; build](#install--build)
+- [Bench session (annotated transcript)](#bench-session-annotated-transcript)
+- [The trace format, walked field by field](#the-trace-format-walked-field-by-field)
+- [Architecture](#architecture)
+- [Trace flow](#trace-flow)
+- [Command reference](#command-reference)
+- [Workflows](#workflows)
