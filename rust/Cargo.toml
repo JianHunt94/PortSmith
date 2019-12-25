@@ -1,2 +1,3 @@
 [package]
 name = "portsmith-replay"
+version = "1.0.0"
