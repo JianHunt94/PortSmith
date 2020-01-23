@@ -7,3 +7,12 @@
 use std::collections::BTreeMap;
 use std::io::{Read, Write};
 use std::net::TcpStream;
+use std::time::Duration;
+
+use crate::trace::{Direction, Record};
+
+/// Configuration for a replay run.
+#[derive(Debug, Clone)]
+pub struct ReplayConfig {
+    pub target: String,
+    pub read_timeout: Duration,
