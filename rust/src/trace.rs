@@ -15,3 +15,11 @@ pub enum Direction {
     /// client -> server
     Request,
     /// server -> client
+    Response,
+}
+
+impl fmt::Display for Direction {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            Direction::Request => write!(f, ">"),
+            Direction::Response => write!(f, "<"),
