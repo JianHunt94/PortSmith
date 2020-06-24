@@ -30,3 +30,14 @@ func main() {
 	}
 	var err error
 	switch os.Args[1] {
+	case "capture":
+		err = cmdCapture(os.Args[2:])
+	case "normalize":
+		err = cmdNormalize(os.Args[2:])
+	case "stats":
+		err = cmdStats(os.Args[2:])
+	case "version", "-v", "--version":
+		fmt.Printf("portcap %s\n", version)
+	case "help", "-h", "--help":
+		usage()
+	default:
