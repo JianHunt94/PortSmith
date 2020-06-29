@@ -23,3 +23,12 @@ impl fmt::Display for Direction {
         match self {
             Direction::Request => write!(f, ">"),
             Direction::Response => write!(f, "<"),
+        }
+    }
+}
+
+/// A single captured message.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct Record {
+    pub ts_nanos: i64,
+    pub dir: Direction,
