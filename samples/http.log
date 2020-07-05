@@ -1,1 +1,2 @@
 # Raw HTTP/1.1 session log for normalization into a portsmith trace.
+> GET /index.html HTTP/1.1
