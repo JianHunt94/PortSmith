@@ -7,3 +7,13 @@
 //!   * the leading token distribution (e.g. HTTP methods, Redis verbs)
 //!   * byte-length statistics
 //!
+//! The result is a human-readable report and a stable, machine-parseable
+//! summary suitable for downstream tooling.
+
+use std::collections::BTreeMap;
+
+use crate::trace::{Direction, Record};
+
+/// Textual classification of a payload group.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum Encoding {
