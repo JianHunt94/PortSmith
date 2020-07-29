@@ -17,3 +17,12 @@ use crate::trace::{Direction, Record};
 /// Textual classification of a payload group.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Encoding {
+    Text,
+    Binary,
+}
+
+impl std::fmt::Display for Encoding {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Encoding::Text => write!(f, "text"),
+            Encoding::Binary => write!(f, "binary"),
