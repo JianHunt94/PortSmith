@@ -9,3 +9,7 @@ jobs:
   go:
     name: Go (portcap)
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: go
+    steps:
