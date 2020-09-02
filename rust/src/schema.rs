@@ -26,3 +26,13 @@ impl std::fmt::Display for Encoding {
         match self {
             Encoding::Text => write!(f, "text"),
             Encoding::Binary => write!(f, "binary"),
+        }
+    }
+}
+
+/// Inferred schema for one (proto, direction) group.
+#[derive(Debug, Clone)]
+pub struct GroupSchema {
+    pub proto: String,
+    pub dir: Direction,
+    pub samples: usize,
