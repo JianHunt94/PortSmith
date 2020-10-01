@@ -10,3 +10,9 @@ import (
 	"net"
 	"sync"
 	"time"
+
+	"github.com/portsmith/portcap/internal/trace"
+)
+
+// Proxy accepts connections on Listen, dials Target, and copies bytes in both
+// directions while writing each chunk to a trace.Writer.
