@@ -16,3 +16,10 @@ import (
 
 // Proxy accepts connections on Listen, dials Target, and copies bytes in both
 // directions while writing each chunk to a trace.Writer.
+type Proxy struct {
+	Listen string
+	Target string
+	Proto  string
+
+	mu     sync.Mutex
+	writer *trace.Writer
