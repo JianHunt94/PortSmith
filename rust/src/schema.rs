@@ -55,3 +55,12 @@ pub struct Schema {
 pub fn infer(records: &[Record]) -> Schema {
     // Group by (proto, dir).
     let mut groups: BTreeMap<(String, u8), Vec<&Record>> = BTreeMap::new();
+    for r in records {
+        let key = (r.proto.clone(), dir_key(r.dir));
+        groups.entry(key).or_default().push(r);
+    }
+
+    let mut schema = Schema::default();
+    for ((proto, dk), recs) in groups {
+        schema.groups.push(infer_group(&proto, key_dir(dk), &recs));
+    }
