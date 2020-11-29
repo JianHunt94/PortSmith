@@ -13,3 +13,6 @@ func TestEncodeDecodeRoundTrip(t *testing.T) {
 		{TimestampNanos: 3000, Dir: Request, Session: "abc123", Proto: "raw", Payload: []byte{0x00, 0xff, 0x10}},
 	}
 
+	var buf bytes.Buffer
+	w := NewWriter(&buf, false)
+	for _, r := range recs {
