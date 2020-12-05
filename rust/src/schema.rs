@@ -64,3 +64,13 @@ pub fn infer(records: &[Record]) -> Schema {
     for ((proto, dk), recs) in groups {
         schema.groups.push(infer_group(&proto, key_dir(dk), &recs));
     }
+    schema
+}
+
+fn dir_key(d: Direction) -> u8 {
+    match d {
+        Direction::Request => b'>',
+        Direction::Response => b'<',
+    }
+}
+
