@@ -20,3 +20,10 @@ package trace
 
 import (
 	"bufio"
+	"encoding/base64"
+	"fmt"
+	"io"
+	"strconv"
+	"strings"
+)
+
