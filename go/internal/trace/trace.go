@@ -27,3 +27,10 @@ import (
 	"strings"
 )
 
+// Magic is the recommended first line of a trace file.
+const Magic = "#portsmith-trace v1"
+
+// Direction identifies which side of a session produced a record.
+type Direction byte
+
+const (
