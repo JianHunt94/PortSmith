@@ -49,3 +49,11 @@ impl Record {
             self.payload.len(),
             base64_encode(&self.payload),
         )
+    }
+}
+
+/// Error while parsing a trace line.
+#[derive(Debug)]
+pub struct ParseError {
+    pub line: usize,
+    pub msg: String,
