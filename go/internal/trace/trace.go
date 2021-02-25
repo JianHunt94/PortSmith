@@ -34,3 +34,11 @@ const Magic = "#portsmith-trace v1"
 type Direction byte
 
 const (
+	// Request is a client-to-server message.
+	Request Direction = '>'
+	// Response is a server-to-client message.
+	Response Direction = '<'
+)
+
+func (d Direction) String() string {
+	if d == Response {
