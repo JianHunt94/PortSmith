@@ -23,3 +23,9 @@ type Proxy struct {
 
 	mu     sync.Mutex
 	writer *trace.Writer
+	now    func() time.Time
+}
+
+// New creates a Proxy that writes captured records via w.
+func New(listen, target, proto string, w *trace.Writer) *Proxy {
+	return &Proxy{
