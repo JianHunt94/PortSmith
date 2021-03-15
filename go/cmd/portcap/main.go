@@ -62,3 +62,14 @@ usage:
 
 examples:
   portcap capture -listen :9000 -target 127.0.0.1:6379 -proto redis -out cap.trace
+  portcap normalize -in session.log -proto http -out http.trace
+  portcap stats -in cap.trace
+`)
+}
+
+func cmdCapture(args []string) error {
+	fs := flag.NewFlagSet("capture", flag.ExitOnError)
+	listen := fs.String("listen", ":9000", "address to listen on")
+	target := fs.String("target", "", "upstream target address (host:port)")
+	proto := fs.String("proto", "tcp", "protocol hint recorded in the trace")
+	out := fs.String("out", "-", "output trace file (- for stdout)")
