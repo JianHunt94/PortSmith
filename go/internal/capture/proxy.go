@@ -29,3 +29,9 @@ type Proxy struct {
 // New creates a Proxy that writes captured records via w.
 func New(listen, target, proto string, w *trace.Writer) *Proxy {
 	return &Proxy{
+		Listen: listen,
+		Target: target,
+		Proto:  proto,
+		writer: w,
+		now:    time.Now,
+	}
