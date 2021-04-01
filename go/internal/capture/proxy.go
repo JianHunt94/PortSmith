@@ -35,3 +35,9 @@ func New(listen, target, proto string, w *trace.Writer) *Proxy {
 		writer: w,
 		now:    time.Now,
 	}
+}
+
+// Serve accepts up to maxConns connections (0 == unlimited) and blocks until
+// the listener is closed or the connection limit is reached.
+func (p *Proxy) Serve(maxConns int) error {
+	ln, err := net.Listen("tcp", p.Listen)
