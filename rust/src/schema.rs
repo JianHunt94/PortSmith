@@ -74,3 +74,12 @@ fn dir_key(d: Direction) -> u8 {
     }
 }
 
+fn key_dir(k: u8) -> Direction {
+    if k == b'<' {
+        Direction::Response
+    } else {
+        Direction::Request
+    }
+}
+
+fn infer_group(proto: &str, dir: Direction, recs: &[&Record]) -> GroupSchema {
