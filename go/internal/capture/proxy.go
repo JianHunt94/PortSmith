@@ -41,3 +41,10 @@ func New(listen, target, proto string, w *trace.Writer) *Proxy {
 // the listener is closed or the connection limit is reached.
 func (p *Proxy) Serve(maxConns int) error {
 	ln, err := net.Listen("tcp", p.Listen)
+	if err != nil {
+		return fmt.Errorf("listen %s: %w", p.Listen, err)
+	}
+	defer ln.Close()
+
+	var wg sync.WaitGroup
+	handled := 0
