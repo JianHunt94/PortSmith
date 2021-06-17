@@ -35,3 +35,9 @@
 
   <!-- ============ STAGE 1: raw session log ============ -->
   <g transform="translate(40,100)">
+    <rect width="270" height="180" rx="8" fill="#0b1a2c" stroke="#1d4b6e"/>
+    <rect width="270" height="26" rx="8" fill="#12283f"/>
+    <text x="14" y="18" font-size="12" fill="#3ff0e0">samples/redis.log</text>
+    <g font-size="12.5" fill="#bfe8f2">
+      <text x="16" y="52"><tspan fill="#3ff0e0">&gt;</tspan> PING</text>
+      <text x="16" y="74"><tspan fill="#ff8a3d">&lt;</tspan> +PONG</text>
