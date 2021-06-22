@@ -175,3 +175,28 @@ portsmith schema inference
     PING             1
     SET              1
 
+[redis response]
+  samples    : 3
+  encoding   : text
+  terminator : LF
+  length     : min=4 max=6 mean=5.3
+  tokens     :
+    $2               1
+    +OK              1
+    +PONG            1
+```
+
+**4 &#183; Summarize the recording** with `stats` (counts, byte totals, distinct
+sessions, wall-clock span, protocol breakdown):
+
+```console
+$ portcap stats -in samples/redis.trace
+records:   6
+requests:  3
+responses: 3
+sessions:  1
+bytes:     42
+duration:  250ms
+protocols:
+  redis    6
+```
