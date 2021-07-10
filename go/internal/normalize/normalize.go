@@ -32,3 +32,12 @@ func FromRawLog(r io.Reader, proto, session string, startNanos, stepNanos int64)
 		if cur == nil {
 			return
 		}
+		records = append(records, trace.Record{
+			TimestampNanos: ts,
+			Dir:            curDir,
+			Session:        session,
+			Proto:          proto,
+			Payload:        []byte(cur.String()),
+		})
+		ts += stepNanos
+		cur = nil
