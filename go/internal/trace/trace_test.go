@@ -16,3 +16,6 @@ func TestEncodeDecodeRoundTrip(t *testing.T) {
 	var buf bytes.Buffer
 	w := NewWriter(&buf, false)
 	for _, r := range recs {
+		if err := w.Write(r); err != nil {
+			t.Fatalf("write: %v", err)
+		}
