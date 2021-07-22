@@ -41,3 +41,10 @@
     <g font-size="12.5" fill="#bfe8f2">
       <text x="16" y="52"><tspan fill="#3ff0e0">&gt;</tspan> PING</text>
       <text x="16" y="74"><tspan fill="#ff8a3d">&lt;</tspan> +PONG</text>
+      <text x="16" y="96"><tspan fill="#3ff0e0">&gt;</tspan> SET key1 hi</text>
+      <text x="16" y="118"><tspan fill="#ff8a3d">&lt;</tspan> +OK</text>
+      <text x="16" y="140"><tspan fill="#3ff0e0">&gt;</tspan> GET key1</text>
+      <text x="16" y="162"><tspan fill="#ff8a3d">&lt;</tspan> $2 / hi</text>
+    </g>
+  </g>
+
