@@ -42,3 +42,10 @@ const (
 
 func (d Direction) String() string {
 	if d == Response {
+		return "<"
+	}
+	return ">"
+}
+
+// Record is a single captured message.
+type Record struct {
