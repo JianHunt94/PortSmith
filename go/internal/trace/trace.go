@@ -49,3 +49,10 @@ func (d Direction) String() string {
 
 // Record is a single captured message.
 type Record struct {
+	TimestampNanos int64
+	Dir            Direction
+	Session        string
+	Proto          string
+	Payload        []byte
+}
+
