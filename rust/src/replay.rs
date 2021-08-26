@@ -44,3 +44,12 @@ pub struct Exchange {
 /// Aggregate results of a replay run.
 #[derive(Debug, Clone, Default)]
 pub struct ReplayReport {
+    pub exchanges: Vec<Exchange>,
+    pub errors: usize,
+}
+
+impl ReplayReport {
+    pub fn summary(&self) -> String {
+        let bytes_in: usize = self.exchanges.iter().map(|e| e.response.len()).sum();
+        let bytes_out: usize = self.exchanges.iter().map(|e| e.request.len()).sum();
+        format!(
