@@ -11,3 +11,7 @@ format designed to be trivially parseable with each language's standard library.
 # any number of comment lines beginning with '#'
 <record>
 <record>
+...
+```
+
+* Encoding: UTF-8.
