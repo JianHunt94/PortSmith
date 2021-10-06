@@ -48,3 +48,9 @@ func (p *Proxy) Serve(maxConns int) error {
 
 	var wg sync.WaitGroup
 	handled := 0
+	for {
+		conn, err := ln.Accept()
+		if err != nil {
+			wg.Wait()
+			return nil
+		}
