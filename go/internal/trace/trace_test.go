@@ -19,3 +19,7 @@ func TestEncodeDecodeRoundTrip(t *testing.T) {
 		if err := w.Write(r); err != nil {
 			t.Fatalf("write: %v", err)
 		}
+	}
+	if err := w.Flush(); err != nil {
+		t.Fatalf("flush: %v", err)
+	}
