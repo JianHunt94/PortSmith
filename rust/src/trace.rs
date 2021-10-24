@@ -66,3 +66,11 @@ impl fmt::Display for ParseError {
 }
 
 impl std::error::Error for ParseError {}
+
+/// Parse a single record line.
+pub fn decode_line(line: &str, line_no: usize) -> Result<Record, ParseError> {
+    let err = |m: String| ParseError {
+        line: line_no,
+        msg: m,
+    };
+    let fields: Vec<&str> = line.splitn(7, ' ').collect();
