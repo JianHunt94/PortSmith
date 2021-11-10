@@ -48,3 +48,9 @@
     </g>
   </g>
 
+  <!-- normalize arrow -->
+  <g font-size="11" fill="#3ff0e0">
+    <line x1="312" y1="190" x2="392" y2="190" stroke="#3ff0e0" stroke-width="1.6" marker-end="url(#arrow)"/>
+    <text x="352" y="180" text-anchor="middle">normalize</text>
+    <circle cx="312" cy="190" r="3" fill="#3ff0e0">
+      <animate attributeName="cx" values="312;388;312" dur="2.4s" repeatCount="indefinite"/>
