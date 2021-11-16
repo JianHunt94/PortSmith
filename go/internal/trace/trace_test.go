@@ -23,3 +23,6 @@ func TestEncodeDecodeRoundTrip(t *testing.T) {
 	if err := w.Flush(); err != nil {
 		t.Fatalf("flush: %v", err)
 	}
+
+	r := NewReader(&buf)
+	var got []Record
