@@ -225,3 +225,29 @@ $ portcap capture -listen :9000 -target 127.0.0.1:6379 -proto redis -out cap.tra
 ---
 
 ## The trace format, walked field by field
+
+The trace is the single contract between the two tools. It is line-oriented
+UTF-8 so both standard libraries can parse it trivially. The authoritative spec
+lives in [`docs/FORMAT.md`](docs/FORMAT.md); here is the working reading of it.
+
+A file is a recommended magic comment, any number of comments/blank lines, then
+one record per line:
+
+```
+#portsmith-trace v1
+V1 1700000000000000000 > a1b2c3 redis 5 UElORwo=
+V1 1700000000050000000 < a1b2c3 redis 6 K1BPTkcK
+```
+
+Each record is seven space-separated fields. Because the payload is base64 it
+contains no spaces, so a decoder splits on the **first six spaces** (`splitn(7)`):
+
+```
+V1   1700000000000000000   >   a1b2c3   redis   5   UElORwo=
+│    │                     │   │        │       │   │
+│    │                     │   │        │       │   └─ payload  base64(raw bytes) → "PING\n"
+│    │                     │   │        │       └───── len      decimal length of the DECODED payload (5)
+│    │                     │   │        └───────────── proto    protocol hint: tcp | http | redis | raw | …
+│    │                     │   └────────────────────── session  opaque id, no spaces
+│    │                     └────────────────────────── dir      ">" request (client→server) | "<" response
+│    └──────────────────────────────────────────────── ts_nanos int64 nanoseconds since the Unix epoch
