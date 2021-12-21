@@ -7,3 +7,5 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## [1.0.0] - 2026-08-31
 
 ### Added
+- **Trace format v1** — documented line-based, base64-framed trace format shared
+  by both tools (`docs/FORMAT.md`).
