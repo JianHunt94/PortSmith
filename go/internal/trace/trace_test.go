@@ -26,3 +26,6 @@ func TestEncodeDecodeRoundTrip(t *testing.T) {
 
 	r := NewReader(&buf)
 	var got []Record
+	for {
+		rec, err := r.Next()
+		if err == io.EOF {
