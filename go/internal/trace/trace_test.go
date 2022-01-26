@@ -29,3 +29,6 @@ func TestEncodeDecodeRoundTrip(t *testing.T) {
 	for {
 		rec, err := r.Next()
 		if err == io.EOF {
+			break
+		}
+		if err != nil {
