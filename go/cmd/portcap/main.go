@@ -73,3 +73,14 @@ func cmdCapture(args []string) error {
 	target := fs.String("target", "", "upstream target address (host:port)")
 	proto := fs.String("proto", "tcp", "protocol hint recorded in the trace")
 	out := fs.String("out", "-", "output trace file (- for stdout)")
+	max := fs.Int("max", 0, "stop after N connections (0 = unlimited)")
+	_ = fs.Parse(args)
+
+	if *target == "" {
+		return fmt.Errorf("capture: -target is required")
+	}
+	w, closeOut, err := openOut(*out)
+	if err != nil {
+		return err
+	}
+	defer closeOut()
