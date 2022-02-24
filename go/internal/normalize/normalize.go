@@ -41,3 +41,12 @@ func FromRawLog(r io.Reader, proto, session string, startNanos, stepNanos int64)
 		})
 		ts += stepNanos
 		cur = nil
+	}
+
+	for sc.Scan() {
+		line := strings.TrimRight(sc.Text(), "\r")
+		if line == "" || strings.HasPrefix(line, "#") {
+			continue
+		}
+		dir := trace.Request
+		body := line
