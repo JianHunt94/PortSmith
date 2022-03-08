@@ -54,3 +54,9 @@ func (p *Proxy) Serve(maxConns int) error {
 			wg.Wait()
 			return nil
 		}
+		wg.Add(1)
+		go func(c net.Conn) {
+			defer wg.Done()
+			if e := p.handle(c); e != nil {
+				fmt.Println("# capture: session error:", e)
+			}
