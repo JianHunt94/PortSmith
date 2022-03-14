@@ -9,3 +9,5 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Added
 - **Trace format v1** — documented line-based, base64-framed trace format shared
   by both tools (`docs/FORMAT.md`).
+- **`portcap` (Go)**:
+  - `capture` — transparent TCP proxy recording both directions of a session.
