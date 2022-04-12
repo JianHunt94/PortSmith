@@ -18,3 +18,7 @@ format designed to be trivially parseable with each language's standard library.
 * Line separator: `\n`. A trailing `\r` is tolerated on read.
 * Blank lines are ignored.
 * Lines beginning with `#` are comments and are ignored by decoders.
+* Every other non-empty line is exactly one **record**.
+
+## Record grammar
+
