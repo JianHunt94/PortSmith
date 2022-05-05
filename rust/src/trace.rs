@@ -83,3 +83,11 @@ pub fn decode_line(line: &str, line_no: usize) -> Result<Record, ParseError> {
     let ts_nanos: i64 = fields[1]
         .parse()
         .map_err(|e| err(format!("invalid timestamp: {e}")))?;
+    let dir = match fields[2] {
+        ">" => Direction::Request,
+        "<" => Direction::Response,
+        other => return Err(err(format!("invalid direction {other:?}"))),
+    };
+    let declared_len: usize = fields[5]
+        .parse()
+        .map_err(|e| err(format!("invalid length: {e}")))?;
