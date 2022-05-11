@@ -11,3 +11,4 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   by both tools (`docs/FORMAT.md`).
 - **`portcap` (Go)**:
   - `capture` — transparent TCP proxy recording both directions of a session.
+  - `normalize` — convert `> / <` raw session logs into canonical traces.
