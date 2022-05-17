@@ -50,3 +50,11 @@ func FromRawLog(r io.Reader, proto, session string, startNanos, stepNanos int64)
 		}
 		dir := trace.Request
 		body := line
+		switch {
+		case line == ">":
+			dir, body = trace.Request, ""
+		case line == "<":
+			dir, body = trace.Response, ""
+		case strings.HasPrefix(line, "> "):
+			dir, body = trace.Request, line[2:]
+		case strings.HasPrefix(line, "< "):
