@@ -32,3 +32,6 @@ func TestEncodeDecodeRoundTrip(t *testing.T) {
 			break
 		}
 		if err != nil {
+			t.Fatalf("read: %v", err)
+		}
+		got = append(got, rec)
