@@ -81,3 +81,12 @@ pub fn replay(records: &[Record], cfg: &ReplayConfig) -> ReplayReport {
     let mut report = ReplayReport::default();
     for session in order {
         let recs = &by_session[&session];
+        replay_session(&session, recs, cfg, &mut report);
+    }
+    report
+}
+
+fn replay_session(session: &str, recs: &[&Record], cfg: &ReplayConfig, report: &mut ReplayReport) {
+    let stream = match TcpStream::connect(&cfg.target) {
+        Ok(s) => s,
+        Err(e) => {
