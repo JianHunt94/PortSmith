@@ -23,3 +23,9 @@ fn base64_round_trips() {
     assert_eq!(base64_decode("TWFu").unwrap(), b"Man");
 }
 
+#[test]
+fn decode_line_matches_encode() {
+    let r = Record {
+        ts_nanos: 42,
+        dir: Direction::Response,
+        session: "s1".into(),
