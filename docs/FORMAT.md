@@ -22,3 +22,6 @@ format designed to be trivially parseable with each language's standard library.
 
 ## Record grammar
 
+```
+V1 SP ts_nanos SP dir SP session SP proto SP len SP payload
+```
