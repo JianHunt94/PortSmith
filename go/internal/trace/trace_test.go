@@ -35,3 +35,6 @@ func TestEncodeDecodeRoundTrip(t *testing.T) {
 			t.Fatalf("read: %v", err)
 		}
 		got = append(got, rec)
+	}
+
+	if len(got) != len(recs) {
