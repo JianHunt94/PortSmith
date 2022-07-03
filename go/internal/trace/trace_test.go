@@ -38,3 +38,6 @@ func TestEncodeDecodeRoundTrip(t *testing.T) {
 	}
 
 	if len(got) != len(recs) {
+		t.Fatalf("got %d records, want %d", len(got), len(recs))
+	}
+	for i := range recs {
