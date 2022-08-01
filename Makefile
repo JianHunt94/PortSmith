@@ -6,3 +6,6 @@
 #   make fmt     format both codebases
 #   make vet     static checks (go vet + cargo check)
 #   make demo    regenerate sample traces and print an inference report
+#   make clean   remove build artifacts
+
+GO_DIR   := go
