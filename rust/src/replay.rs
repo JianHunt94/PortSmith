@@ -90,3 +90,13 @@ fn replay_session(session: &str, recs: &[&Record], cfg: &ReplayConfig, report: &
     let stream = match TcpStream::connect(&cfg.target) {
         Ok(s) => s,
         Err(e) => {
+            report.errors += 1;
+            report.exchanges.push(Exchange {
+                session: session.to_string(),
+                request: Vec::new(),
+                response: Vec::new(),
+                error: Some(format!("connect {}: {e}", cfg.target)),
+            });
+            return;
+        }
+    };
