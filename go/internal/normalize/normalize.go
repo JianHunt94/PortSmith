@@ -67,3 +67,12 @@ func FromRawLog(r io.Reader, proto, session string, startNanos, stepNanos int64)
 			cur = &strings.Builder{}
 			curDir = dir
 		}
+		cur.WriteString(body)
+		cur.WriteByte('\n')
+	}
+	flush()
+	if err := sc.Err(); err != nil {
+		return nil, err
+	}
+	return records, nil
+}
