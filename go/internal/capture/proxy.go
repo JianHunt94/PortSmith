@@ -60,3 +60,9 @@ func (p *Proxy) Serve(maxConns int) error {
 			if e := p.handle(c); e != nil {
 				fmt.Println("# capture: session error:", e)
 			}
+		}(conn)
+		handled++
+		if maxConns > 0 && handled >= maxConns {
+			// Wait for in-flight sessions then stop.
+			go func() { wg.Wait(); ln.Close() }()
+		}
