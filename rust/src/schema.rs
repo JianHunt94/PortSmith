@@ -93,3 +93,13 @@ fn infer_group(proto: &str, dir: Direction, recs: &[&Record]) -> GroupSchema {
     let mut token_counts: BTreeMap<String, usize> = BTreeMap::new();
 
     for r in recs {
+        let p = &r.payload;
+        total_bytes += p.len();
+        min_len = min_len.min(p.len());
+        max_len = max_len.max(p.len());
+
+        let printable_ct = p.iter().filter(|&&b| is_printable(b)).count();
+        if p.is_empty() || printable_ct * 100 >= p.len() * 90 {
+            printable += 1;
+        }
+
