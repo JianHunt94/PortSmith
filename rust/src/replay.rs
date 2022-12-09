@@ -100,3 +100,12 @@ fn replay_session(session: &str, recs: &[&Record], cfg: &ReplayConfig, report: &
             return;
         }
     };
+    let _ = stream.set_read_timeout(Some(cfg.read_timeout));
+    let mut stream = stream;
+
+    let mut prev_ts: Option<i64> = None;
+    for r in recs {
+        if r.dir != Direction::Request {
+            prev_ts = Some(r.ts_nanos);
+            continue;
+        }
