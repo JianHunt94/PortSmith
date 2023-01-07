@@ -103,3 +103,12 @@ fn infer_group(proto: &str, dir: Direction, recs: &[&Record]) -> GroupSchema {
             printable += 1;
         }
 
+        if p.ends_with(b"\r\n") {
+            crlf += 1;
+        } else if p.ends_with(b"\n") {
+            lf += 1;
+        }
+
+        if let Some(tok) = leading_token(p) {
+            *token_counts.entry(tok).or_insert(0) += 1;
+        }
