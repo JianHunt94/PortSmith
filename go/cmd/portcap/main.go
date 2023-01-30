@@ -127,3 +127,14 @@ func cmdNormalize(args []string) error {
 		}
 	}
 	if err := tw.Flush(); err != nil {
+		return err
+	}
+	fmt.Fprintf(os.Stderr, "# normalized %d records\n", len(records))
+	return nil
+}
+
+func cmdStats(args []string) error {
+	fs := flag.NewFlagSet("stats", flag.ExitOnError)
+	in := fs.String("in", "-", "input trace file (- for stdin)")
+	_ = fs.Parse(args)
+
