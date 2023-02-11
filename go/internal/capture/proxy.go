@@ -66,3 +66,10 @@ func (p *Proxy) Serve(maxConns int) error {
 			// Wait for in-flight sessions then stop.
 			go func() { wg.Wait(); ln.Close() }()
 		}
+	}
+}
+
+func (p *Proxy) handle(client net.Conn) error {
+	defer client.Close()
+	session := newSessionID()
+
