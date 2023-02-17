@@ -14,3 +14,5 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   - `normalize` — convert `> / <` raw session logs into canonical traces.
   - `stats` — counts, byte totals, session counts, and protocol breakdown.
 - **`portsmith-replay` (Rust)**:
+  - `infer` — dependency-free schema inference (text/binary classification,
+    framing/terminator detection, leading-token distribution, length stats).
