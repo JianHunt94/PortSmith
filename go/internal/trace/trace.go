@@ -56,3 +56,11 @@ type Record struct {
 	Payload        []byte
 }
 
+// Encode writes the record as a single trace line (no trailing newline).
+func (r Record) Encode() string {
+	return fmt.Sprintf("V1 %d %s %s %s %d %s",
+		r.TimestampNanos,
+		r.Dir,
+		r.Session,
+		r.Proto,
+		len(r.Payload),
