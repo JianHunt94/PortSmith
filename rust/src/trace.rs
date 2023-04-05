@@ -100,3 +100,11 @@ pub fn decode_line(line: &str, line_no: usize) -> Result<Record, ParseError> {
         )));
     }
     Ok(Record {
+        ts_nanos,
+        dir,
+        session: fields[3].to_string(),
+        proto: fields[4].to_string(),
+        payload,
+    })
+}
+
