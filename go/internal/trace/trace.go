@@ -64,3 +64,10 @@ func (r Record) Encode() string {
 		r.Session,
 		r.Proto,
 		len(r.Payload),
+		base64.StdEncoding.EncodeToString(r.Payload),
+	)
+}
+
+// ParseError describes a malformed record along with the offending line.
+type ParseError struct {
+	Line int
