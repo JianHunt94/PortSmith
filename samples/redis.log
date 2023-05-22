@@ -2,3 +2,4 @@
 # "< " are server responses. Consecutive same-direction lines are coalesced.
 > PING
 < +PONG
+> SET key1 hi
