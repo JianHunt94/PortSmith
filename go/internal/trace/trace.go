@@ -71,3 +71,10 @@ func (r Record) Encode() string {
 // ParseError describes a malformed record along with the offending line.
 type ParseError struct {
 	Line int
+	Msg  string
+}
+
+func (e *ParseError) Error() string {
+	return fmt.Sprintf("trace: line %d: %s", e.Line, e.Msg)
+}
+
