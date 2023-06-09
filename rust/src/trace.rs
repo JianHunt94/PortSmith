@@ -108,3 +108,12 @@ pub fn decode_line(line: &str, line_no: usize) -> Result<Record, ParseError> {
     })
 }
 
+/// Read all records from a buffered reader, skipping comments and blank lines.
+pub fn read_all<R: BufRead>(reader: R) -> io::Result<Vec<Record>> {
+    let mut out = Vec::new();
+    for (i, line) in reader.lines().enumerate() {
+        let line = line?;
+        let line = line.trim_end_matches('\r');
+        if line.is_empty() || line.starts_with('#') {
+            continue;
+        }
