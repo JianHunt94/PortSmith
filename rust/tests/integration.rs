@@ -42,3 +42,9 @@ fn decode_line_rejects_bad_input() {
     assert!(decode_line("V1 100 > s p", 1).is_err()); // too few fields
     assert!(decode_line("V9 100 > s p 4 dGVzdA==", 1).is_err()); // version
     assert!(decode_line("V1 100 ? s p 4 dGVzdA==", 1).is_err()); // direction
+    assert!(decode_line("V1 100 > s p 9 dGVzdA==", 1).is_err()); // len mismatch
+}
+
+#[test]
+fn infer_detects_text_and_tokens() {
+    let recs = vec![
