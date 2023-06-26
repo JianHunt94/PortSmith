@@ -117,3 +117,11 @@ pub fn read_all<R: BufRead>(reader: R) -> io::Result<Vec<Record>> {
         if line.is_empty() || line.starts_with('#') {
             continue;
         }
+        match decode_line(line, i + 1) {
+            Ok(r) => out.push(r),
+            Err(e) => return Err(io::Error::new(io::ErrorKind::InvalidData, e.to_string())),
+        }
+    }
+    Ok(out)
+}
+
