@@ -16,3 +16,4 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - **`portsmith-replay` (Rust)**:
   - `infer` — dependency-free schema inference (text/binary classification,
     framing/terminator detection, leading-token distribution, length stats).
+  - `replay` — replay captured requests against a live TCP target with optional
