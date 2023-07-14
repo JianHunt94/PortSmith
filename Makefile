@@ -9,3 +9,5 @@
 #   make clean   remove build artifacts
 
 GO_DIR   := go
+RUST_DIR := rust
+BIN_DIR  := bin
