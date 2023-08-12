@@ -17,3 +17,5 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   - `infer` — dependency-free schema inference (text/binary classification,
     framing/terminator detection, leading-token distribution, length stats).
   - `replay` — replay captured requests against a live TCP target with optional
+    timing preservation and configurable read timeouts.
+  - `cat` — pretty-print a trace with control characters escaped.
