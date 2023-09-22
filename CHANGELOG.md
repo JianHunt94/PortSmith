@@ -19,3 +19,5 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   - `replay` — replay captured requests against a live TCP target with optional
     timing preservation and configurable read timeouts.
   - `cat` — pretty-print a trace with control characters escaped.
+  - Self-contained standard-base64 encoder/decoder (no external crates).
+- Sample Redis and HTTP session logs and generated traces under `samples/`.
