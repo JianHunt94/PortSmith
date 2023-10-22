@@ -142,3 +142,12 @@ pub fn base64_encode(data: &[u8]) -> String {
         } else {
             out.push('=');
         }
+        if chunk.len() > 2 {
+            out.push(B64[(n & 63) as usize] as char);
+        } else {
+            out.push('=');
+        }
+    }
+    out
+}
+
