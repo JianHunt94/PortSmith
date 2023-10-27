@@ -11,3 +11,5 @@
 GO_DIR   := go
 RUST_DIR := rust
 BIN_DIR  := bin
+
+.PHONY: build build-go build-rust test test-go test-rust fmt vet demo clean
