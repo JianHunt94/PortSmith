@@ -276,3 +276,28 @@ and nothing else crosses the boundary.
 
 ```mermaid
 flowchart LR
+    client([Client]) -->|TCP| proxy
+    subgraph GO["portcap · Go"]
+        proxy[capture proxy] --> tw[trace.Writer]
+        norm[normalize] --> tw
+        stats[stats]
+    end
+    proxy -->|TCP| server([Upstream service])
+    log[[raw > / < log]] --> norm
+    tw -->|writes| trace[["*.trace<br/>portsmith v1"]]
+
+    trace -->|reads| infer
+    subgraph RS["portsmith-replay · Rust"]
+        infer[schema infer] --> report[[schema report]]
+        catcmd[cat]
+        replaycmd[replay engine]
+    end
+    trace --> catcmd
+    trace --> stats
+    trace --> replaycmd
+    replaycmd -->|TCP| target([Replay target])
+```
+
+*(Mermaid is used sparingly here; the animated SVGs below carry the visual load.)*
+
+---
