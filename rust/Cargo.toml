@@ -5,3 +5,4 @@ edition = "2021"
 description = "Schema inference and replay for the portsmith trace format"
 license = "MIT"
 
+[[bin]]
