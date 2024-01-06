@@ -45,3 +45,6 @@ func TestEncodeDecodeRoundTrip(t *testing.T) {
 			got[i].Dir != recs[i].Dir ||
 			got[i].Session != recs[i].Session ||
 			got[i].Proto != recs[i].Proto ||
+			!bytes.Equal(got[i].Payload, recs[i].Payload) {
+			t.Errorf("record %d mismatch: got %+v want %+v", i, got[i], recs[i])
+		}
