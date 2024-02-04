@@ -122,3 +122,12 @@ fn infer_group(proto: &str, dir: Direction, recs: &[&Record]) -> GroupSchema {
     } else {
         Encoding::Binary
     };
+    let terminator = if crlf >= lf && crlf * 2 >= samples {
+        "CRLF".to_string()
+    } else if lf * 2 >= samples {
+        "LF".to_string()
+    } else {
+        "none".to_string()
+    };
+    let mean_len = if samples > 0 {
+        total_bytes as f64 / samples as f64
