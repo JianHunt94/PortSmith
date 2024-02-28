@@ -109,3 +109,12 @@ fn replay_session(session: &str, recs: &[&Record], cfg: &ReplayConfig, report: &
             prev_ts = Some(r.ts_nanos);
             continue;
         }
+        if cfg.preserve_timing {
+            if let Some(pt) = prev_ts {
+                let delta = r.ts_nanos.saturating_sub(pt);
+                if delta > 0 {
+                    let capped = delta.min(2_000_000_000); // cap at 2s
+                    std::thread::sleep(Duration::from_nanos(capped as u64));
+                }
+            }
+        }
