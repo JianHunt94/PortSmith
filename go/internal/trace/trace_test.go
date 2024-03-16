@@ -48,3 +48,6 @@ func TestEncodeDecodeRoundTrip(t *testing.T) {
 			!bytes.Equal(got[i].Payload, recs[i].Payload) {
 			t.Errorf("record %d mismatch: got %+v want %+v", i, got[i], recs[i])
 		}
+	}
+}
+
