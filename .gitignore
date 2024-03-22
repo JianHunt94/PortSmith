@@ -11,3 +11,5 @@ Cargo.lock
 
 # Build output
 /bin/
+/dist/
+
