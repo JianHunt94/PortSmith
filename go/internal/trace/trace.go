@@ -86,3 +86,10 @@ func DecodeLine(line string, lineNo int) (Record, error) {
 		return Record{}, &ParseError{lineNo, fmt.Sprintf("expected 7 fields, got %d", len(fields))}
 	}
 	if fields[0] != "V1" {
+		return Record{}, &ParseError{lineNo, "unknown record version " + strconv.Quote(fields[0])}
+	}
+	ts, err := strconv.ParseInt(fields[1], 10, 64)
+	if err != nil {
+		return Record{}, &ParseError{lineNo, "invalid timestamp: " + err.Error()}
+	}
+	if len(fields[2]) != 1 || (fields[2][0] != '>' && fields[2][0] != '<') {
