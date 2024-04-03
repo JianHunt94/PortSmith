@@ -159,3 +159,12 @@ pub fn base64_decode(s: &str) -> Result<Vec<u8>, String> {
             b'a'..=b'z' => Ok((c - b'a' + 26) as u32),
             b'0'..=b'9' => Ok((c - b'0' + 52) as u32),
             b'+' => Ok(62),
+            b'/' => Ok(63),
+            _ => Err(format!("invalid base64 char {:?}", c as char)),
+        }
+    }
+    let bytes = s.as_bytes();
+    if !bytes.len().is_multiple_of(4) {
+        return Err("length not a multiple of 4".to_string());
+    }
+    let mut out = Vec::with_capacity(bytes.len() / 4 * 3);
