@@ -138,3 +138,14 @@ func cmdStats(args []string) error {
 	in := fs.String("in", "-", "input trace file (- for stdin)")
 	_ = fs.Parse(args)
 
+	r, closeIn, err := openIn(*in)
+	if err != nil {
+		return err
+	}
+	defer closeIn()
+
+	s, err := normalize.Compute(trace.NewReader(r))
+	if err != nil {
+		return err
+	}
+	fmt.Printf("records:   %d\n", s.Records)
