@@ -93,3 +93,10 @@ func DecodeLine(line string, lineNo int) (Record, error) {
 		return Record{}, &ParseError{lineNo, "invalid timestamp: " + err.Error()}
 	}
 	if len(fields[2]) != 1 || (fields[2][0] != '>' && fields[2][0] != '<') {
+		return Record{}, &ParseError{lineNo, "invalid direction " + strconv.Quote(fields[2])}
+	}
+	dir := Direction(fields[2][0])
+	declaredLen, err := strconv.Atoi(fields[5])
+	if err != nil {
+		return Record{}, &ParseError{lineNo, "invalid length: " + err.Error()}
+	}
