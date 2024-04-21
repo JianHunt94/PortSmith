@@ -100,3 +100,11 @@ func DecodeLine(line string, lineNo int) (Record, error) {
 	if err != nil {
 		return Record{}, &ParseError{lineNo, "invalid length: " + err.Error()}
 	}
+	payload, err := base64.StdEncoding.DecodeString(fields[6])
+	if err != nil {
+		return Record{}, &ParseError{lineNo, "invalid base64 payload: " + err.Error()}
+	}
+	if len(payload) != declaredLen {
+		return Record{}, &ParseError{lineNo, fmt.Sprintf("length mismatch: declared %d, decoded %d", declaredLen, len(payload))}
+	}
+	return Record{
