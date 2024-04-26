@@ -108,3 +108,10 @@ func DecodeLine(line string, lineNo int) (Record, error) {
 		return Record{}, &ParseError{lineNo, fmt.Sprintf("length mismatch: declared %d, decoded %d", declaredLen, len(payload))}
 	}
 	return Record{
+		TimestampNanos: ts,
+		Dir:            dir,
+		Session:        fields[3],
+		Proto:          fields[4],
+		Payload:        payload,
+	}, nil
+}
