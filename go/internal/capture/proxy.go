@@ -79,3 +79,9 @@ func (p *Proxy) handle(client net.Conn) error {
 	}
 	defer upstream.Close()
 
+	var wg sync.WaitGroup
+	wg.Add(2)
+	// client -> upstream : Request records
+	go func() {
+		defer wg.Done()
+		p.pump(client, upstream, session, trace.Request)
