@@ -98,3 +98,9 @@
   </g>
 
   <!-- ============ STAGE 3: inferred schema ============ -->
+  <g transform="translate(930,100)">
+    <rect width="230" height="180" rx="8" fill="#0b1a2c" stroke="#3a2a18"/>
+    <rect width="230" height="26" rx="8" fill="#2a1c0e"/>
+    <text x="14" y="18" font-size="12" fill="#ff8a3d">schema report</text>
+    <g font-size="11" fill="#ffcfa6">
+      <text x="14" y="48" fill="#ff8a3d">[redis request]</text>
