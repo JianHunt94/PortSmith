@@ -76,3 +76,12 @@ func FromRawLog(r io.Reader, proto, session string, startNanos, stepNanos int64)
 	}
 	return records, nil
 }
+
+// Stats summarizes a set of records.
+type Stats struct {
+	Records    int
+	Requests   int
+	Responses  int
+	Sessions   int
+	TotalBytes int
+	ByProto    map[string]int
