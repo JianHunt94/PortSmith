@@ -51,3 +51,6 @@ func TestEncodeDecodeRoundTrip(t *testing.T) {
 	}
 }
 
+func TestDecodeLineErrors(t *testing.T) {
+	cases := []string{
+		"V1 100 > s p",             // too few fields
