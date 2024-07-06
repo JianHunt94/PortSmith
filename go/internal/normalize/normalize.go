@@ -85,3 +85,11 @@ type Stats struct {
 	Sessions   int
 	TotalBytes int
 	ByProto    map[string]int
+	FirstNanos int64
+	LastNanos  int64
+}
+
+// Compute walks a trace.Reader and returns aggregate statistics.
+func Compute(tr *trace.Reader) (Stats, error) {
+	s := Stats{ByProto: map[string]int{}, FirstNanos: -1}
+	sessions := map[string]struct{}{}
