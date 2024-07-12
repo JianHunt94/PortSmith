@@ -54,3 +54,6 @@ func TestEncodeDecodeRoundTrip(t *testing.T) {
 func TestDecodeLineErrors(t *testing.T) {
 	cases := []string{
 		"V1 100 > s p",             // too few fields
+		"V2 100 > s p 4 dGVzdA==",  // bad version
+		"V1 xx > s p 4 dGVzdA==",   // bad timestamp
+		"V1 100 ? s p 4 dGVzdA==",  // bad direction
