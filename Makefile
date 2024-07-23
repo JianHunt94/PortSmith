@@ -18,3 +18,5 @@ build: build-go build-rust
 
 build-go:
 	cd $(GO_DIR) && go build -o ../$(BIN_DIR)/portcap ./cmd/portcap
+
+build-rust:
