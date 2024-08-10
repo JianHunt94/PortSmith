@@ -78,3 +78,23 @@ impl Flags {
             let a = &args[i];
             if let Some(key) = a.strip_prefix('-') {
                 if i + 1 < args.len() && !args[i + 1].starts_with('-') {
+                    map.insert(key.to_string(), args[i + 1].clone());
+                    i += 2;
+                } else {
+                    toggles.insert(key.to_string());
+                    i += 1;
+                }
+            } else {
+                i += 1;
+            }
+        }
+        Flags { map, toggles }
+    }
+    fn get<'a>(&'a self, k: &str, default: &'a str) -> &'a str {
+        self.map.get(k).map(String::as_str).unwrap_or(default)
+    }
+    fn has(&self, k: &str) -> bool {
+        self.toggles.contains(k)
+    }
+}
+
