@@ -20,3 +20,5 @@ build-go:
 	cd $(GO_DIR) && go build -o ../$(BIN_DIR)/portcap ./cmd/portcap
 
 build-rust:
+	cd $(RUST_DIR) && cargo build --release
+
