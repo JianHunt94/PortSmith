@@ -115,3 +115,10 @@ func DecodeLine(line string, lineNo int) (Record, error) {
 		Payload:        payload,
 	}, nil
 }
+
+// Writer serializes records to an io.Writer.
+type Writer struct {
+	w             *bufio.Writer
+	wroteMagic    bool
+	suppressMagic bool
+}
