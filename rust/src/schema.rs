@@ -141,3 +141,12 @@ fn infer_group(proto: &str, dir: Direction, recs: &[&Record]) -> GroupSchema {
 
     GroupSchema {
         proto: proto.to_string(),
+        dir,
+        samples,
+        encoding,
+        terminator,
+        min_len,
+        max_len,
+        mean_len,
+        top_tokens,
+    }
