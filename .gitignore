@@ -13,3 +13,5 @@ Cargo.lock
 /bin/
 /dist/
 
+# Generated capture output (keep curated samples/*.trace)
+/cap.trace
