@@ -98,3 +98,9 @@ func (p *Proxy) handle(client net.Conn) error {
 		}
 	}()
 	wg.Wait()
+	return nil
+}
+
+// pump copies src->dst, emitting one trace record per read.
+func (p *Proxy) pump(src io.Reader, dst io.Writer, session string, dir trace.Direction) {
+	buf := make([]byte, 32*1024)
