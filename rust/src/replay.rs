@@ -118,3 +118,12 @@ fn replay_session(session: &str, recs: &[&Record], cfg: &ReplayConfig, report: &
                 }
             }
         }
+        prev_ts = Some(r.ts_nanos);
+
+        let mut ex = Exchange {
+            session: session.to_string(),
+            request: r.payload.clone(),
+            response: Vec::new(),
+            error: None,
+        };
+        if let Err(e) = stream.write_all(&r.payload) {
