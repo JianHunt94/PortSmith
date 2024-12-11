@@ -22,3 +22,5 @@ build-go:
 build-rust:
 	cd $(RUST_DIR) && cargo build --release
 
+test: test-go test-rust
+
