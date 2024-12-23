@@ -8,3 +8,4 @@
 < Content-Length: 13
 <
 < Hello, world
+> GET /missing HTTP/1.1
