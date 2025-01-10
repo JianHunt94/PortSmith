@@ -104,3 +104,9 @@ func (p *Proxy) handle(client net.Conn) error {
 // pump copies src->dst, emitting one trace record per read.
 func (p *Proxy) pump(src io.Reader, dst io.Writer, session string, dir trace.Direction) {
 	buf := make([]byte, 32*1024)
+	for {
+		n, err := src.Read(buf)
+		if n > 0 {
+			chunk := make([]byte, n)
+			copy(chunk, buf[:n])
+			p.record(trace.Record{
