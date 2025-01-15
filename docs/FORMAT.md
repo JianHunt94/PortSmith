@@ -43,3 +43,6 @@ first six spaces (`splitn(7)`).
 ### Validation rules
 
 A decoder MUST reject a record when:
+
+* the line does not split into exactly 7 fields;
+* the version is not `V1`;
