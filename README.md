@@ -403,3 +403,28 @@ Inference is heuristic and dependency-free. Records are grouped by
 `(proto, direction)`, and for each group `portsmith-replay` computes:
 
 - **Encoding — text vs binary.** A payload is "printable" when at least 90% of its
+  bytes are printable ASCII (plus tab/CR/LF); empty payloads count as printable. A
+  group is **text** when at least 80% of its samples are printable, else **binary**.
+- **Terminator — CRLF / LF / none.** Votes on how many payloads end in `\r\n`
+  versus a bare `\n`: **CRLF** when CRLF is at least as common as LF and covers at
+  least half the samples, **LF** when LF covers at least half, else **none**.
+- **Length statistics.** `min`, `max`, and `mean` of decoded payload byte lengths.
+- **Leading-token histogram.** The first whitespace-delimited token of each
+  textual payload (e.g. HTTP methods, Redis verbs), capped at 32 bytes so binary
+  noise never becomes a "token". Tokens are sorted by count descending, then name,
+  and the top 8 are shown.
+
+These are signals, not certainties — see [Limitations](#limitations).
+
+---
+
+## How replay actually works
+
+`replay` groups records by session (preserving first-appearance order) and opens
+**one TCP connection per session**. Within a session it walks records in order
+and, for each **request**, writes the payload, flushes, then reads whatever the
+server returns before moving on — tracking byte counts and a response preview.
+
+The read window is bounded two ways: a per-read socket timeout (`-timeout`,
+default 200 ms) and an overall wait per request (`-wait`, default 500 ms). Reads
+stop early on a short read, EOF, or would-block/timeout. With `-timing`, the
