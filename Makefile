@@ -24,3 +24,5 @@ build-rust:
 
 test: test-go test-rust
 
+test-go:
+	cd $(GO_DIR) && go test ./...
