@@ -428,3 +428,28 @@ server returns before moving on — tracking byte counts and a response preview.
 The read window is bounded two ways: a per-read socket timeout (`-timeout`,
 default 200 ms) and an overall wait per request (`-wait`, default 500 ms). Reads
 stop early on a short read, EOF, or would-block/timeout. With `-timing`, the
+replayer sleeps the original inter-record gap before each request, capped at 2 s
+so a stale trace cannot stall the run.
+
+Per-request failures (connect/write) are captured as errors in the report rather
+than aborting the run; the process exits non-zero if any occurred. Response
+records in the input are **not** sent — replay drives only the request side.
+
+---
+
+## Design choices
+
+- **Why base64 payloads?** Payloads are arbitrary bytes — binary protocols,
+  embedded NULs, non-UTF-8. Base64 keeps every record on a single ASCII-clean line
+  that survives `grep`, `diff`, and copy-paste.
+- **Why a redundant `len`?** A cheap integrity check and forward-compatible
+  framing: a reader detects truncation before it allocates, and the decoder
+  hard-fails on any mismatch.
+- **Why nanoseconds?** High-resolution ordering and faithful timing replay.
+- **Why two languages?** Capture is a concurrency/I/O problem (the proxy uses a
+  goroutine per direction with a mutex-guarded writer); inference and replay are a
+  parsing/state problem (Rust's exhaustive matching and ownership). Splitting them
+  keeps each half small and idiomatic.
+- **Why no dependencies?** Every line — including the base64 codec — is in-tree
+  and testable, which is the whole point of a tool you use to understand *other*
+  systems. Clippy runs `-D warnings`; the Go build is race-tested in CI.
