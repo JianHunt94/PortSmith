@@ -453,3 +453,29 @@ records in the input are **not** sent — replay drives only the request side.
 - **Why no dependencies?** Every line — including the base64 codec — is in-tree
   and testable, which is the whole point of a tool you use to understand *other*
   systems. Clippy runs `-D warnings`; the Go build is race-tested in CI.
+
+---
+
+## Comparison
+
+Rough positioning — portsmith is intentionally narrow.
+
+| Capability | **portsmith** | tcpdump / Wireshark | mitmproxy | Custom scripts |
+|---|:--:|:--:|:--:|:--:|
+| Capture live TCP traffic | ✅ app-level proxy | ✅ packet-level | ✅ HTTP(S) focus | ⚠️ you build it |
+| Human-readable, greppable trace | ✅ base64 text | ⚠️ pcap (binary) | ⚠️ flows/pcap | ⚠️ varies |
+| Protocol-agnostic (no dissectors) | ✅ | ⚠️ needs dissector | ❌ HTTP-centric | ⚠️ varies |
+| Heuristic schema inference | ✅ text/binary, framing, tokens | ❌ | ❌ | ❌ |
+| Replay requests to a live target | ✅ with optional timing | ❌ | ⚠️ limited | ⚠️ varies |
+| Zero third-party dependencies | ✅ | ❌ | ❌ | ⚠️ varies |
+| Scope | line-oriented req/resp | all packets | web traffic | anything |
+
+If you need TLS interception, packet-level analysis, or rich dissectors, reach
+for the specialized tools above. If you need to *understand and re-drive* a
+line-oriented TCP protocol with something you can read end-to-end, that is
+portsmith.
+
+---
+
+## Limitations
+
