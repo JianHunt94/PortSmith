@@ -150,3 +150,13 @@ fn infer_group(proto: &str, dir: Direction, recs: &[&Record]) -> GroupSchema {
         mean_len,
         top_tokens,
     }
+}
+
+fn is_printable(b: u8) -> bool {
+    b == b'\t' || b == b'\n' || b == b'\r' || (0x20..=0x7e).contains(&b)
+}
+
+/// Extract the first whitespace-delimited token if the payload is textual.
+fn leading_token(payload: &[u8]) -> Option<String> {
+    let end = payload
+        .iter()
