@@ -160,3 +160,12 @@ fn is_printable(b: u8) -> bool {
 fn leading_token(payload: &[u8]) -> Option<String> {
     let end = payload
         .iter()
+        .position(|&b| b == b' ' || b == b'\r' || b == b'\n' || b == b'\t')
+        .unwrap_or(payload.len());
+    if end == 0 {
+        return None;
+    }
+    let slice = &payload[..end];
+    if slice.iter().all(|&b| is_printable(b) && b != b' ') {
+        // Cap token length so binary noise never becomes a "token".
+        if slice.len() <= 32 {
