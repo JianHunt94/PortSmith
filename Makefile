@@ -26,3 +26,6 @@ test: test-go test-rust
 
 test-go:
 	cd $(GO_DIR) && go test ./...
+
+test-rust:
+	cd $(RUST_DIR) && cargo test
