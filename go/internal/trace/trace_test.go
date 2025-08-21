@@ -57,3 +57,6 @@ func TestDecodeLineErrors(t *testing.T) {
 		"V2 100 > s p 4 dGVzdA==",  // bad version
 		"V1 xx > s p 4 dGVzdA==",   // bad timestamp
 		"V1 100 ? s p 4 dGVzdA==",  // bad direction
+		"V1 100 > s p z dGVzdA==",  // bad length
+		"V1 100 > s p 4 !!!notb64", // bad base64
+		"V1 100 > s p 9 dGVzdA==",  // length mismatch
