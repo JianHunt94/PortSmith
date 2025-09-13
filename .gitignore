@@ -16,3 +16,5 @@ Cargo.lock
 # Generated capture output (keep curated samples/*.trace)
 /cap.trace
 *.capture
+
+# Editor / OS
