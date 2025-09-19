@@ -55,3 +55,9 @@ fn infer_detects_text_and_tokens() {
             proto: "redis".into(),
             payload: b"GET key1\r\n".to_vec(),
         },
+        Record {
+            ts_nanos: 2,
+            dir: Direction::Request,
+            session: "a".into(),
+            proto: "redis".into(),
+            payload: b"GET key2\r\n".to_vec(),
