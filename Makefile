@@ -29,3 +29,5 @@ test-go:
 
 test-rust:
 	cd $(RUST_DIR) && cargo test
+
+fmt:
