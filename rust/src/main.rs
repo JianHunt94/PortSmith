@@ -118,3 +118,23 @@ fn cmd_infer(args: &[String]) -> io::Result<()> {
 }
 
 fn cmd_replay(args: &[String]) -> io::Result<()> {
+    let f = Flags::parse(args);
+    let target = f.get("target", "");
+    if target.is_empty() {
+        return Err(io::Error::new(
+            io::ErrorKind::InvalidInput,
+            "replay: -target is required",
+        ));
+    }
+    let records = load_records(f.get("in", "-"))?;
+    let timeout_ms: u64 = f.get("timeout", "200").parse().unwrap_or(200);
+    let wait_ms: u64 = f.get("wait", "500").parse().unwrap_or(500);
+    let cfg = ReplayConfig {
+        target: target.to_string(),
+        read_timeout: Duration::from_millis(timeout_ms),
+        preserve_timing: f.has("timing"),
+        max_wait: Duration::from_millis(wait_ms),
+    };
+    let report = replay(&records, &cfg);
+    let stdout = io::stdout();
+    let mut out = stdout.lock();
