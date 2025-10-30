@@ -110,3 +110,9 @@ func (p *Proxy) pump(src io.Reader, dst io.Writer, session string, dir trace.Dir
 			chunk := make([]byte, n)
 			copy(chunk, buf[:n])
 			p.record(trace.Record{
+				TimestampNanos: p.now().UnixNano(),
+				Dir:            dir,
+				Session:        session,
+				Proto:          p.Proto,
+				Payload:        chunk,
+			})
