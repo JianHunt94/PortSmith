@@ -160,3 +160,14 @@ func cmdStats(args []string) error {
 	}
 	return nil
 }
+
+func openIn(path string) (io.Reader, func(), error) {
+	if path == "-" || path == "" {
+		return os.Stdin, func() {}, nil
+	}
+	f, err := os.Open(path)
+	if err != nil {
+		return nil, nil, err
+	}
+	return f, func() { f.Close() }, nil
+}
