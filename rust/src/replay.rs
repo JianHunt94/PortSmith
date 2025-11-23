@@ -137,3 +137,12 @@ fn replay_session(session: &str, recs: &[&Record], cfg: &ReplayConfig, report: &
         report.exchanges.push(ex);
     }
 }
+
+fn read_response(stream: &mut TcpStream, max_wait: Duration) -> Vec<u8> {
+    let start = std::time::Instant::now();
+    let mut out = Vec::new();
+    let mut buf = [0u8; 4096];
+    loop {
+        match stream.read(&mut buf) {
+            Ok(0) => break,
+            Ok(n) => {
