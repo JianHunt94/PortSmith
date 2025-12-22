@@ -31,3 +31,5 @@ test-rust:
 	cd $(RUST_DIR) && cargo test
 
 fmt:
+	cd $(GO_DIR) && go fmt ./...
+	cd $(RUST_DIR) && cargo fmt
