@@ -130,3 +130,10 @@ func NewWriter(w io.Writer, suppressMagic bool) *Writer {
 }
 
 // Write encodes and writes a single record.
+func (tw *Writer) Write(r Record) error {
+	if !tw.wroteMagic && !tw.suppressMagic {
+		if _, err := tw.w.WriteString(Magic + "\n"); err != nil {
+			return err
+		}
+		tw.wroteMagic = true
+	}
