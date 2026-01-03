@@ -168,3 +168,11 @@ pub fn base64_decode(s: &str) -> Result<Vec<u8>, String> {
         return Err("length not a multiple of 4".to_string());
     }
     let mut out = Vec::with_capacity(bytes.len() / 4 * 3);
+    for chunk in bytes.chunks(4) {
+        let pad = chunk.iter().filter(|&&c| c == b'=').count();
+        let mut n = 0u32;
+        for (i, &c) in chunk.iter().enumerate() {
+            let v = if c == b'=' { 0 } else { val(c)? };
+            n |= v << (18 - 6 * i);
+        }
+        out.push((n >> 16 & 0xff) as u8);
