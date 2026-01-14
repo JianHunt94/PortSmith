@@ -67,3 +67,10 @@ fn infer_detects_text_and_tokens() {
             dir: Direction::Request,
             session: "a".into(),
             proto: "redis".into(),
+            payload: b"SET key3 v\r\n".to_vec(),
+        },
+    ];
+    let schema = infer(&recs);
+    assert_eq!(schema.groups.len(), 1);
+    let g = &schema.groups[0];
+    assert_eq!(g.encoding, Encoding::Text);
