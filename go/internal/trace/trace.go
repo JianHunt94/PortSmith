@@ -137,3 +137,10 @@ func (tw *Writer) Write(r Record) error {
 		}
 		tw.wroteMagic = true
 	}
+	if _, err := tw.w.WriteString(r.Encode()); err != nil {
+		return err
+	}
+	return tw.w.WriteByte('\n')
+}
+
+// Flush flushes buffered data.
