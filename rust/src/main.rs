@@ -138,3 +138,23 @@ fn cmd_replay(args: &[String]) -> io::Result<()> {
     let report = replay(&records, &cfg);
     let stdout = io::stdout();
     let mut out = stdout.lock();
+    for ex in &report.exchanges {
+        match &ex.error {
+            Some(e) => writeln!(out, "[{}] ERROR {}", ex.session, e)?,
+            None => writeln!(
+                out,
+                "[{}] {} bytes -> {} bytes | {}",
+                ex.session,
+                ex.request.len(),
+                ex.response.len(),
+                preview(&ex.response)
+            )?,
+        }
+    }
+    writeln!(out, "{}", report.summary())?;
+    if report.errors > 0 {
+        exit(1);
+    }
+    Ok(())
+}
+
