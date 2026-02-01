@@ -136,3 +136,9 @@
       <g opacity="0">
         <text x="20" y="142" fill="#8fb8cf">[a1b2c3] 9 bytes -&gt; 9 bytes | <tspan fill="#ff8a3d">$2\r\nhi\r\n</tspan></text>
         <animate attributeName="opacity" values="0;0;0;0;1;1" dur="4.5s" repeatCount="indefinite"/>
+      </g>
+      <g opacity="0">
+        <text x="20" y="176" fill="#3ff0e0">replayed 3 request(s), 0 error(s), sent 26 byte(s), received 19 byte(s)</text>
+        <animate attributeName="opacity" values="0;0;0;0;0;1" dur="4.5s" repeatCount="indefinite"/>
+      </g>
+
