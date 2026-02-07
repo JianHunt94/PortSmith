@@ -74,3 +74,9 @@ fn infer_detects_text_and_tokens() {
     assert_eq!(schema.groups.len(), 1);
     let g = &schema.groups[0];
     assert_eq!(g.encoding, Encoding::Text);
+    assert_eq!(g.terminator, "CRLF");
+    assert_eq!(g.samples, 3);
+    // GET appears twice and should be the top token.
+    assert_eq!(g.top_tokens[0].0, "GET");
+    assert_eq!(g.top_tokens[0].1, 2);
+}
