@@ -9,3 +9,4 @@ license = "MIT"
 name = "portsmith-replay"
 path = "src/main.rs"
 
+[lib]
