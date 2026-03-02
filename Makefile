@@ -35,3 +35,6 @@ fmt:
 	cd $(RUST_DIR) && cargo fmt
 
 vet:
+	cd $(GO_DIR) && go vet ./...
+	cd $(RUST_DIR) && cargo check
+
