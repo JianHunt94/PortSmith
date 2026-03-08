@@ -179,3 +179,12 @@ impl Schema {
     /// Render a human-readable multi-line report.
     pub fn report(&self) -> String {
         let mut out = String::new();
+        out.push_str("portsmith schema inference\n");
+        out.push_str("==========================\n");
+        if self.groups.is_empty() {
+            out.push_str("(no records)\n");
+            return out;
+        }
+        for g in &self.groups {
+            let dir = match g.dir {
+                Direction::Request => "request",
