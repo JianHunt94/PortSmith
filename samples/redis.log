@@ -4,3 +4,4 @@
 < +PONG
 > SET key1 hi
 < +OK
+> GET key1
