@@ -116,3 +116,10 @@ func (p *Proxy) pump(src io.Reader, dst io.Writer, session string, dir trace.Dir
 				Proto:          p.Proto,
 				Payload:        chunk,
 			})
+			if _, werr := dst.Write(chunk); werr != nil {
+				return
+			}
+		}
+		if err != nil {
+			return
+		}
