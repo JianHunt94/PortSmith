@@ -479,3 +479,28 @@ portsmith.
 
 ## Limitations
 
+Being honest about the edges of the v1 toolchain:
+
+- **Line/request-response oriented.** Normalization and inference assume text with
+  framing discernible from terminators. Streaming, multiplexed, or length-prefixed
+  binary protocols infer as `binary` with `terminator: none` and limited tokens.
+- **Inference is heuristic.** The 90%/80% printable thresholds, terminator voting,
+  and leading-token extraction describe a corpus; they do not prove a grammar.
+- **Replay is stateless per request.** It writes a request and reads what returns
+  within the wait window; it does not model correlation, sequence numbers, auth
+  handshakes, or adaptive framing, and does not diff responses automatically.
+- **`normalize` synthesizes timing** from `-start`/`-step`; only `capture` records
+  real wall-clock nanos.
+- **`capture` emits one record per TCP read** — a record boundary is a read
+  boundary, not necessarily a protocol message boundary.
+- **No TLS, no UDP.** Plain TCP only.
+
+---
+
+## Troubleshooting
+
+| Symptom | Likely cause &amp; fix |
+|---|---|
+| `trace: line N: expected 7 fields, got M` | Line was hand-edited or truncated. Records are exactly 7 space-separated fields; the payload must be space-free base64. |
+| `trace: line N: length mismatch: declared X, decoded Y` | `len` disagrees with the decoded payload — truncation or a bad edit. Re-generate the record; do not hand-tweak `len`. |
+| `trace: line N: invalid base64 payload` | Payload is not *standard* base64 (`+`/`/`, `=` padding). URL-safe base64 is not accepted. |
