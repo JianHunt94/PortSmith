@@ -57,3 +57,6 @@ cheaply detect truncation or corruption before allocating.
 
 ## Example
 
+```
+#portsmith-trace v1
+V1 1700000000000000000 > a1b2c3 redis 5 UElORwo=
