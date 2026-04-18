@@ -18,3 +18,5 @@ Cargo.lock
 *.capture
 
 # Editor / OS
+.DS_Store
+.idea/
