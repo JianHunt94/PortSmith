@@ -142,3 +142,9 @@
         <animate attributeName="opacity" values="0;0;0;0;0;1" dur="4.5s" repeatCount="indefinite"/>
       </g>
 
+      <!-- blinking cursor -->
+      <rect x="20" y="196" width="9" height="15" fill="#3ff0e0">
+        <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
+      </rect>
+      <text x="34" y="209" fill="#546b80" font-size="12">TCP &#8226; connect once per session &#8226; bounded read window</text>
+    </g>
