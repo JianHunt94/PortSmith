@@ -144,3 +144,11 @@ func (tw *Writer) Write(r Record) error {
 }
 
 // Flush flushes buffered data.
+func (tw *Writer) Flush() error { return tw.w.Flush() }
+
+// Reader streams records from an io.Reader, skipping comments and blank lines.
+type Reader struct {
+	sc     *bufio.Scanner
+	lineNo int
+}
+
