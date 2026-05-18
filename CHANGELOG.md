@@ -22,3 +22,5 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   - Self-contained standard-base64 encoder/decoder (no external crates).
 - Sample Redis and HTTP session logs and generated traces under `samples/`.
 - Go unit tests (trace round-trip and decoder validation) and Rust integration
+  tests (base64 known-answer, trace parsing, schema inference).
+- `Makefile`, GitHub Actions CI (`.github/workflows/ci.yml`), MIT `LICENSE`.
