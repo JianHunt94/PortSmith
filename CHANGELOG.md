@@ -24,3 +24,5 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Go unit tests (trace round-trip and decoder validation) and Rust integration
   tests (base64 known-answer, trace parsing, schema inference).
 - `Makefile`, GitHub Actions CI (`.github/workflows/ci.yml`), MIT `LICENSE`.
+
+[1.0.0]: https://example.com/portsmith/releases/tag/v1.0.0
