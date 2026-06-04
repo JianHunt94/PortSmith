@@ -504,3 +504,28 @@ Being honest about the edges of the v1 toolchain:
 | `trace: line N: expected 7 fields, got M` | Line was hand-edited or truncated. Records are exactly 7 space-separated fields; the payload must be space-free base64. |
 | `trace: line N: length mismatch: declared X, decoded Y` | `len` disagrees with the decoded payload — truncation or a bad edit. Re-generate the record; do not hand-tweak `len`. |
 | `trace: line N: invalid base64 payload` | Payload is not *standard* base64 (`+`/`/`, `=` padding). URL-safe base64 is not accepted. |
+| `trace: line N: unknown record version "V2"` | Trace is from a newer format revision; use a matching tool version. |
+| `replay: -target is required` | Pass `-target HOST:PORT`. |
+| `[sess] ERROR connect HOST:PORT: ...` | Target unreachable/refusing. The run continues and exits non-zero. |
+| Replay responses look empty/truncated | Server was slower than the read window. Raise `-wait` and/or `-timeout`. |
+| `capture` records nothing | No client traversed the proxy. Point your client at `-listen`, not the upstream. |
+| `infer` shows `binary` for expected text | Payloads fall below the 90% printable threshold, or too few samples. |
+| `cat`/`stats` print nothing | Empty trace or all comments/blanks. Confirm records start with `V1 `. |
+
+---
+
+## Repository layout
+
+```
+portsmith/
+├── go/                  portcap (module github.com/portsmith/portcap)
+│   ├── cmd/portcap/     CLI: capture · normalize · stats · version
+│   └── internal/        trace codec (+tests) · TCP proxy · normalize+stats
+├── rust/                portsmith-replay
+│   ├── src/             trace.rs (codec + in-tree base64) · schema.rs · replay.rs · main.rs
+│   └── tests/           integration tests (base64 KAT, parsing, inference)
+├── samples/             redis.log, http.log + generated *.trace files
+├── docs/
+│   ├── FORMAT.md        authoritative trace format spec
+│   └── assets/          animated SVG diagrams for this README
+├── Makefile             build · test · fmt · vet · demo · clean
