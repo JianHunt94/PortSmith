@@ -123,3 +123,9 @@ func (p *Proxy) pump(src io.Reader, dst io.Writer, session string, dir trace.Dir
 		if err != nil {
 			return
 		}
+	}
+}
+
+func (p *Proxy) record(r trace.Record) {
+	p.mu.Lock()
+	defer p.mu.Unlock()
