@@ -146,3 +146,12 @@ fn read_response(stream: &mut TcpStream, max_wait: Duration) -> Vec<u8> {
         match stream.read(&mut buf) {
             Ok(0) => break,
             Ok(n) => {
+                out.extend_from_slice(&buf[..n]);
+                if n < buf.len() {
+                    break;
+                }
+            }
+            Err(ref e)
+                if e.kind() == std::io::ErrorKind::WouldBlock
+                    || e.kind() == std::io::ErrorKind::TimedOut =>
+            {
