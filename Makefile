@@ -38,3 +38,5 @@ vet:
 	cd $(GO_DIR) && go vet ./...
 	cd $(RUST_DIR) && cargo check
 
+demo:
+	cd $(GO_DIR) && go run ./cmd/portcap normalize -in ../samples/redis.log \
