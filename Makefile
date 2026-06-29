@@ -40,3 +40,5 @@ vet:
 
 demo:
 	cd $(GO_DIR) && go run ./cmd/portcap normalize -in ../samples/redis.log \
+		-proto redis -session a1b2c3 -start 1700000000000000000 -step 50000000 \
+		-out ../samples/redis.trace
