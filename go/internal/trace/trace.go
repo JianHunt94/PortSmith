@@ -152,3 +152,10 @@ type Reader struct {
 	lineNo int
 }
 
+// NewReader returns a Reader over r. It supports lines up to 16 MiB.
+func NewReader(r io.Reader) *Reader {
+	sc := bufio.NewScanner(r)
+	sc.Buffer(make([]byte, 0, 64*1024), 16*1024*1024)
+	return &Reader{sc: sc}
+}
+
