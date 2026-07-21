@@ -129,3 +129,9 @@ func (p *Proxy) pump(src io.Reader, dst io.Writer, session string, dir trace.Dir
 func (p *Proxy) record(r trace.Record) {
 	p.mu.Lock()
 	defer p.mu.Unlock()
+	if err := p.writer.Write(r); err == nil {
+		_ = p.writer.Flush()
+	}
+}
+
+func newSessionID() string {
