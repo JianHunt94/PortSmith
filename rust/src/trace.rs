@@ -176,3 +176,12 @@ pub fn base64_decode(s: &str) -> Result<Vec<u8>, String> {
             n |= v << (18 - 6 * i);
         }
         out.push((n >> 16 & 0xff) as u8);
+        if pad < 2 {
+            out.push((n >> 8 & 0xff) as u8);
+        }
+        if pad < 1 {
+            out.push((n & 0xff) as u8);
+        }
+    }
+    Ok(out)
+}
