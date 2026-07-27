@@ -111,3 +111,11 @@ func Compute(tr *trace.Reader) (Stats, error) {
 			s.Requests++
 		}
 		if s.FirstNanos < 0 || rec.TimestampNanos < s.FirstNanos {
+			s.FirstNanos = rec.TimestampNanos
+		}
+		if rec.TimestampNanos > s.LastNanos {
+			s.LastNanos = rec.TimestampNanos
+		}
+	}
+	s.Sessions = len(sessions)
+	if s.FirstNanos < 0 {
