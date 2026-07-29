@@ -64,3 +64,6 @@ V1 1700000000050000000 < a1b2c3 redis 6 K1BPTkcK
 ```
 
 Decoded:
+
+```
+[a1b2c3] request  redis  "PING\n"
