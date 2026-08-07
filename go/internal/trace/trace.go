@@ -159,3 +159,10 @@ func NewReader(r io.Reader) *Reader {
 	return &Reader{sc: sc}
 }
 
+// Next returns the next record. It returns io.EOF when the stream is exhausted.
+func (tr *Reader) Next() (Record, error) {
+	for tr.sc.Scan() {
+		tr.lineNo++
+		line := strings.TrimRight(tr.sc.Text(), "\r")
+		if line == "" || strings.HasPrefix(line, "#") {
+			continue
