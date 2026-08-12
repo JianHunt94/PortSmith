@@ -10,3 +10,4 @@ name = "portsmith-replay"
 path = "src/main.rs"
 
 [lib]
+name = "portsmith_replay"
