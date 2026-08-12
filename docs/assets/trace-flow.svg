@@ -148,3 +148,10 @@
       </rect>
       <text x="34" y="209" fill="#546b80" font-size="12">TCP &#8226; connect once per session &#8226; bounded read window</text>
     </g>
+  </g>
+
+  <!-- connective wire from schema down to replay -->
+  <path d="M1045,280 C1045,320 600,320 600,348" fill="none" stroke="url(#wire)" stroke-width="1.5" stroke-dasharray="4 5" opacity="0.6">
+    <animate attributeName="stroke-dashoffset" values="0;-90" dur="2.5s" repeatCount="indefinite"/>
+  </path>
+</svg>
