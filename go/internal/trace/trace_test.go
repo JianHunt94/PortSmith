@@ -60,3 +60,6 @@ func TestDecodeLineErrors(t *testing.T) {
 		"V1 100 > s p z dGVzdA==",  // bad length
 		"V1 100 > s p 4 !!!notb64", // bad base64
 		"V1 100 > s p 9 dGVzdA==",  // length mismatch
+	}
+	for i, line := range cases {
+		if _, err := DecodeLine(line, i+1); err == nil {
