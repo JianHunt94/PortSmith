@@ -166,3 +166,11 @@ func (tr *Reader) Next() (Record, error) {
 		line := strings.TrimRight(tr.sc.Text(), "\r")
 		if line == "" || strings.HasPrefix(line, "#") {
 			continue
+		}
+		return DecodeLine(line, tr.lineNo)
+	}
+	if err := tr.sc.Err(); err != nil {
+		return Record{}, err
+	}
+	return Record{}, io.EOF
+}
