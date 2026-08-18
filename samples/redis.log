@@ -6,3 +6,4 @@
 < +OK
 > GET key1
 < $2
+< hi
