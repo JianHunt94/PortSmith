@@ -529,3 +529,29 @@ portsmith/
 │   ├── FORMAT.md        authoritative trace format spec
 │   └── assets/          animated SVG diagrams for this README
 ├── Makefile             build · test · fmt · vet · demo · clean
+├── CHANGELOG.md
+└── .github/workflows/   CI: Go · Rust · cross-language interop
+```
+
+---
+
+## Roadmap
+
+Directions under consideration (not yet implemented — see [Limitations](#limitations)
+for what v1 does today):
+
+- Response diffing in `replay` (compare live responses against recorded ones).
+- Length-prefixed / delimiter-configurable framing hints for inference.
+- Additional protocol hints and richer token analysis (e.g. header/verb pairs).
+- A `V2` trace revision if framing metadata proves worth the redundancy.
+
+Contributions that keep the "standard-library-only, readable end-to-end" spirit
+are welcome.
+
+---
+
+## License
+
+MIT — see [`LICENSE`](LICENSE).
+
+<p align="center"><sub>portsmith · clip the probe, read the waveform, chart the schema, replay the signal.</sub></p>
