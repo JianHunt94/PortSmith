@@ -119,3 +119,12 @@ func Compute(tr *trace.Reader) (Stats, error) {
 	}
 	s.Sessions = len(sessions)
 	if s.FirstNanos < 0 {
+		s.FirstNanos = 0
+	}
+	return s, nil
+}
+
+// SortedProtos returns proto keys in descending count order for stable output.
+func (s Stats) SortedProtos() []string {
+	keys := make([]string, 0, len(s.ByProto))
+	for k := range s.ByProto {
