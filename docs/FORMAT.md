@@ -67,3 +67,7 @@ Decoded:
 
 ```
 [a1b2c3] request  redis  "PING\n"
+[a1b2c3] response redis  "+PONG\n"
+```
+
+## Design notes
