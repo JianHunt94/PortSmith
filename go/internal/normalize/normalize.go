@@ -128,3 +128,12 @@ func Compute(tr *trace.Reader) (Stats, error) {
 func (s Stats) SortedProtos() []string {
 	keys := make([]string, 0, len(s.ByProto))
 	for k := range s.ByProto {
+		keys = append(keys, k)
+	}
+	sort.Slice(keys, func(i, j int) bool {
+		if s.ByProto[keys[i]] != s.ByProto[keys[j]] {
+			return s.ByProto[keys[i]] > s.ByProto[keys[j]]
+		}
+		return keys[i] < keys[j]
+	})
+	return keys
