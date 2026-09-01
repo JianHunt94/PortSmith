@@ -137,3 +137,12 @@ func (s Stats) SortedProtos() []string {
 		return keys[i] < keys[j]
 	})
 	return keys
+}
+
+// Duration returns the wall-clock span covered by the trace.
+func (s Stats) Duration() time.Duration {
+	if s.Records == 0 {
+		return 0
+	}
+	return time.Duration(s.LastNanos - s.FirstNanos)
+}
