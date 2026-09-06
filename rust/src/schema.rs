@@ -188,3 +188,13 @@ impl Schema {
         for g in &self.groups {
             let dir = match g.dir {
                 Direction::Request => "request",
+                Direction::Response => "response",
+            };
+            out.push_str(&format!("\n[{} {}]\n", g.proto, dir));
+            out.push_str(&format!("  samples    : {}\n", g.samples));
+            out.push_str(&format!("  encoding   : {}\n", g.encoding));
+            out.push_str(&format!("  terminator : {}\n", g.terminator));
+            out.push_str(&format!(
+                "  length     : min={} max={} mean={:.1}\n",
+                g.min_len, g.max_len, g.mean_len
+            ));
