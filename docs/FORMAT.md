@@ -71,3 +71,6 @@ Decoded:
 ```
 
 ## Design notes
+
+* **Why base64?** Payloads are arbitrary bytes (binary protocols, embedded NULs).
+  Base64 keeps every record on a single line and ASCII-clean.
