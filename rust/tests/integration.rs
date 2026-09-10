@@ -80,3 +80,9 @@ fn infer_detects_text_and_tokens() {
     assert_eq!(g.top_tokens[0].0, "GET");
     assert_eq!(g.top_tokens[0].1, 2);
 }
+
+#[test]
+fn infer_detects_binary() {
+    let recs = vec![Record {
+        ts_nanos: 1,
+        dir: Direction::Response,
