@@ -44,3 +44,6 @@ demo:
 		-out ../samples/redis.trace
 	cd $(RUST_DIR) && cargo run --quiet -- infer -in ../samples/redis.trace
 
+clean:
+	rm -rf $(BIN_DIR)
+	cd $(RUST_DIR) && cargo clean
