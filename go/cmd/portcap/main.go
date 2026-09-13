@@ -171,3 +171,14 @@ func openIn(path string) (io.Reader, func(), error) {
 	}
 	return f, func() { f.Close() }, nil
 }
+
+func openOut(path string) (io.Writer, func(), error) {
+	if path == "-" || path == "" {
+		return os.Stdout, func() {}, nil
+	}
+	f, err := os.Create(path)
+	if err != nil {
+		return nil, nil, err
+	}
+	return f, func() { f.Close() }, nil
+}
