@@ -155,3 +155,13 @@ fn read_response(stream: &mut TcpStream, max_wait: Duration) -> Vec<u8> {
                 if e.kind() == std::io::ErrorKind::WouldBlock
                     || e.kind() == std::io::ErrorKind::TimedOut =>
             {
+                break;
+            }
+            Err(_) => break,
+        }
+        if start.elapsed() >= max_wait {
+            break;
+        }
+    }
+    out
+}
