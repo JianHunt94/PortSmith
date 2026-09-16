@@ -63,3 +63,7 @@ func TestDecodeLineErrors(t *testing.T) {
 	}
 	for i, line := range cases {
 		if _, err := DecodeLine(line, i+1); err == nil {
+			t.Errorf("case %d %q: expected error, got nil", i, line)
+		}
+	}
+}
