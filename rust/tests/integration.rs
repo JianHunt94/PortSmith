@@ -86,3 +86,10 @@ fn infer_detects_binary() {
     let recs = vec![Record {
         ts_nanos: 1,
         dir: Direction::Response,
+        session: "a".into(),
+        proto: "raw".into(),
+        payload: vec![0x00, 0x01, 0x02, 0xff, 0xfe, 0x80, 0x90],
+    }];
+    let schema = infer(&recs);
+    assert_eq!(schema.groups[0].encoding, Encoding::Binary);
+}
