@@ -13,3 +13,4 @@ path = "src/main.rs"
 name = "portsmith_replay"
 path = "src/lib.rs"
 
+[profile.release]
