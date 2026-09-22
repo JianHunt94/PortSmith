@@ -14,3 +14,4 @@ name = "portsmith_replay"
 path = "src/lib.rs"
 
 [profile.release]
+opt-level = 3
