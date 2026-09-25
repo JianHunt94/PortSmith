@@ -198,3 +198,13 @@ impl Schema {
                 "  length     : min={} max={} mean={:.1}\n",
                 g.min_len, g.max_len, g.mean_len
             ));
+            if !g.top_tokens.is_empty() {
+                out.push_str("  tokens     :\n");
+                for (tok, ct) in &g.top_tokens {
+                    out.push_str(&format!("    {:<16} {}\n", tok, ct));
+                }
+            }
+        }
+        out
+    }
+}
