@@ -74,3 +74,7 @@ Decoded:
 
 * **Why base64?** Payloads are arbitrary bytes (binary protocols, embedded NULs).
   Base64 keeps every record on a single line and ASCII-clean.
+* **Why a redundant length?** Cheap integrity check and forward-compatible framing.
+* **Why nanoseconds?** High-resolution ordering and faithful timing replay.
+* **Forward compatibility:** future revisions will use a new version tag
+  (`V2`, …). Decoders reject unknown versions rather than guessing.
