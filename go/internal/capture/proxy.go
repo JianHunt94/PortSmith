@@ -135,3 +135,10 @@ func (p *Proxy) record(r trace.Record) {
 }
 
 func newSessionID() string {
+	var b [6]byte
+	if _, err := rand.Read(b[:]); err != nil {
+		// Fall back to a time-derived id; still unique enough for a trace.
+		return fmt.Sprintf("%012x", time.Now().UnixNano())
+	}
+	return hex.EncodeToString(b[:])
+}
