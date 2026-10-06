@@ -178,3 +178,23 @@ fn cmd_cat(args: &[String]) -> io::Result<()> {
             preview(&r.payload)
         )?;
     }
+    Ok(())
+}
+
+/// One-line printable preview of a payload with control chars escaped.
+fn preview(data: &[u8]) -> String {
+    let mut s = String::new();
+    for &b in data.iter().take(64) {
+        match b {
+            b'\r' => s.push_str("\\r"),
+            b'\n' => s.push_str("\\n"),
+            b'\t' => s.push_str("\\t"),
+            0x20..=0x7e => s.push(b as char),
+            _ => s.push_str(&format!("\\x{b:02x}")),
+        }
+    }
+    if data.len() > 64 {
+        s.push_str("...");
+    }
+    s
+}
