@@ -9,3 +9,4 @@ Thanks for looking. A few things that make a change easy to take:
 - `cargo fmt --check`, `cargo clippy -- -D warnings`, `cargo test` (in `rust/`)
 4. Add a test for the behaviour you changed.
 5. Match the surrounding style; the codebase is deliberately small and flat.
+6. Re-run the interop pair before pushing: normalize a sample with Go, then infer with Rust.
